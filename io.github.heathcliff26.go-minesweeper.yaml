@@ -13,26 +13,28 @@ modules:
     sources:
       - type: archive
         only-arches: [x86_64]
-        url: https://github.com/heathcliff26/go-minesweeper/releases/download/v0.5.6/go-minesweeper_linux-amd64.tar.gz
-        sha256: b8f46b4af3770cc37fbb15094e9a71bfa6138573fce8812f173aea595aceac61
+        url: https://github.com/heathcliff26/go-minesweeper/releases/download/v0.6.0/go-minesweeper_linux-amd64.tar.gz
+        sha256: 923e9a6d6b6a1635f28dc99804c0f46b3c2fa6293f9e43a0e87fa1ca13f812bb
         x-checker-data:
           is-main-source: true
           type: json
           url: https://api.github.com/repos/heathcliff26/go-minesweeper/releases/latest
           version-query: .tag_name
           timestamp-query: .published_at
-          url-query: .assets | map(.browser_download_url | select(endswith("_linux-amd64.tar.gz"))) | first
+          url-query: .assets | map(.browser_download_url | select(endswith("_linux-amd64.tar.gz")))
+            | first
       - type: archive
         only-arches: [aarch64]
-        url: https://github.com/heathcliff26/go-minesweeper/releases/download/v0.5.6/go-minesweeper_linux-arm64.tar.gz
-        sha256: 70d7323042297f1b7aee93b38b7048c726873a86beb52c870a7283d8f8015043
+        url: https://github.com/heathcliff26/go-minesweeper/releases/download/v0.6.0/go-minesweeper_linux-arm64.tar.gz
+        sha256: f628df65beb139fa3003f17e82cb1d20096b457d508a77a3388663f5c630b40f
         x-checker-data:
           is-main-source: true
           type: json
           url: https://api.github.com/repos/heathcliff26/go-minesweeper/releases/latest
           version-query: .tag_name
           timestamp-query: .published_at
-          url-query: .assets | map(.browser_download_url | select(endswith("_linux-arm64.tar.gz"))) | first
+          url-query: .assets | map(.browser_download_url | select(endswith("_linux-arm64.tar.gz")))
+            | first
       - type: file
         dest-filename: io.github.heathcliff26.go-minesweeper.metainfo.xml
         url: https://raw.githubusercontent.com/heathcliff26/go-minesweeper/refs/tags/v0.5.6/io.github.heathcliff26.go-minesweeper.metainfo.xml
@@ -43,7 +45,8 @@ modules:
           url: https://api.github.com/repos/heathcliff26/go-minesweeper/releases/latest
           version-query: .tag_name
           timestamp-query: .published_at
-          url-query: '"https://raw.githubusercontent.com/heathcliff26/go-minesweeper/refs/tags/" + $tag + "/io.github.heathcliff26.go-minesweeper.metainfo.xml"'
+          url-query: '"https://raw.githubusercontent.com/heathcliff26/go-minesweeper/refs/tags/"
+            + $tag + "/io.github.heathcliff26.go-minesweeper.metainfo.xml"'
 
     build-commands:
       - install -Dm755 go-minesweeper $FLATPAK_DEST/bin/go-minesweeper
