@@ -13,8 +13,8 @@ modules:
     sources:
       - type: archive
         only-arches: [x86_64]
-        url: https://github.com/heathcliff26/go-minesweeper/releases/download/v0.7.0/go-minesweeper_linux-amd64.tar.gz
-        sha256: 49f99fedc635337b3ad2ef8fd08386e3ec29169ab2533a7cd16e1ccc7cd01381
+        url: https://github.com/heathcliff26/go-minesweeper/releases/download/v0.7.1/go-minesweeper_linux-amd64.tar.gz
+        sha256: 6b55deef23265302c100fa0e9e586803e8d055cf167282bead89bb57800ec668
         x-checker-data:
           is-main-source: true
           type: json
@@ -25,8 +25,8 @@ modules:
             | first
       - type: archive
         only-arches: [aarch64]
-        url: https://github.com/heathcliff26/go-minesweeper/releases/download/v0.7.0/go-minesweeper_linux-arm64.tar.gz
-        sha256: fc725cfa4ebda9e1c1784246e25e1916023adddc693002533b0ad87f38f025f7
+        url: https://github.com/heathcliff26/go-minesweeper/releases/download/v0.7.1/go-minesweeper_linux-arm64.tar.gz
+        sha256: 2c05ffb1cb69df18695ee2ccb8fcded63248b86026ef64f5d96206e6dbdc3885
         x-checker-data:
           is-main-source: true
           type: json
@@ -37,8 +37,8 @@ modules:
             | first
       - type: file
         dest-filename: io.github.heathcliff26.go-minesweeper.metainfo.xml
-        url: https://raw.githubusercontent.com/heathcliff26/go-minesweeper/v0.7.0/io.github.heathcliff26.go-minesweeper.metainfo.xml
-        sha256: 0e1993f56aed89dd95298459252be1d16c67f1ab9fd836b899de1c263452be2b
+        url: https://raw.githubusercontent.com/heathcliff26/go-minesweeper/v0.7.1/io.github.heathcliff26.go-minesweeper.metainfo.xml
+        sha256: e7a3bf87f4a529ff46f610daecafb14bf55350ed0156d161eaed8596a0bad4c6
         x-checker-data:
           is-main-source: true
           type: json
