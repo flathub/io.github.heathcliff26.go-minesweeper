@@ -15,5 +15,8 @@ run: install
 lint:
 	flatpak run --command=flatpak-builder-lint org.flatpak.Builder manifest io.github.heathcliff26.go-minesweeper.yaml
 
+update:
+	flatpak run org.flathub.flatpak-external-data-checker --edit-only io.github.heathcliff26.go-minesweeper.yaml
+
 clean:
 	rm -rf .flatpak-builder build-dir export *.flatpak

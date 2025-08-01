@@ -2,6 +2,8 @@ app-id: io.github.heathcliff26.go-minesweeper
 runtime: org.freedesktop.Platform
 runtime-version: '24.08'
 sdk: org.freedesktop.Sdk
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.golang
 command: go-minesweeper
 finish-args:
   - --socket=x11
@@ -10,50 +12,22 @@ finish-args:
 modules:
   - name: go-minesweeper
     buildsystem: simple
+    build-options:
+      append-path: /usr/lib/sdk/golang/bin
+      env:
+        GOROOT: /usr/lib/sdk/golang
     sources:
-      - type: archive
-        only-arches: [x86_64]
-        url: https://github.com/heathcliff26/go-minesweeper/releases/download/v0.9.1/go-minesweeper_linux-amd64.tar.gz
-        sha256: 5503318ce4925d5ea716a36d99542e47f7290e31da8d1e83d43b9bca806c16c3
+      - type: git
+        url: https://github.com/heathcliff26/go-minesweeper
+        tag: v0.9.2
+        commit: 2a890361061b69988a7d5b6a4602e00ecc1fcece
         x-checker-data:
-          is-main-source: true
-          type: json
-          url: https://api.github.com/repos/heathcliff26/go-minesweeper/releases/latest
-          version-query: .tag_name
-          timestamp-query: .published_at
-          url-query: .assets | map(.browser_download_url | select(endswith("_linux-amd64.tar.gz")))
-            | first
-      - type: archive
-        only-arches: [aarch64]
-        url: https://github.com/heathcliff26/go-minesweeper/releases/download/v0.9.1/go-minesweeper_linux-arm64.tar.gz
-        sha256: 9f3c45cb833672680f2fd7f17d7283c96b513059fa17700323284f819d87aa4b
-        x-checker-data:
-          is-main-source: true
-          type: json
-          url: https://api.github.com/repos/heathcliff26/go-minesweeper/releases/latest
-          version-query: .tag_name
-          timestamp-query: .published_at
-          url-query: .assets | map(.browser_download_url | select(endswith("_linux-arm64.tar.gz")))
-            | first
-      - type: file
-        dest-filename: io.github.heathcliff26.go-minesweeper.metainfo.xml
-        url: https://raw.githubusercontent.com/heathcliff26/go-minesweeper/v0.9.1/io.github.heathcliff26.go-minesweeper.metainfo.xml
-        sha256: d981c7296bd4fb5523ae0e24ab933e21c8b4e3190935b27fe91387d8bc33fd49
-        x-checker-data:
-          is-main-source: true
-          type: json
-          url: https://api.github.com/repos/heathcliff26/go-minesweeper/releases/latest
-          tag-query: .tag_name
-          version-query: .tag_name
-          timestamp-query: .published_at
-          url-query: '"https://raw.githubusercontent.com/heathcliff26/go-minesweeper/"
-            + $tag + "/io.github.heathcliff26.go-minesweeper.metainfo.xml"'
-
+          type: git
+          tag-pattern: ^v([\d.]+)$
     build-commands:
-      - install -Dm755 go-minesweeper $FLATPAK_DEST/bin/go-minesweeper
-      - desktop-file-edit --set-icon=$FLATPAK_ID $FLATPAK_ID.desktop
-      - desktop-file-edit --set-key Exec --set-value go-minesweeper $FLATPAK_ID.desktop
-      - install -D $FLATPAK_ID.desktop $FLATPAK_DEST/share/applications/$FLATPAK_ID.desktop
-      - install -D $FLATPAK_ID.png /app/share/icons/hicolor/512x512/apps/$FLATPAK_ID.png
-      - install -D $FLATPAK_ID.svg /app/share/icons/hicolor/scalable/apps/$FLATPAK_ID.svg
+      - make build
+      - install -Dm755 bin/go-minesweeper $FLATPAK_DEST/bin/go-minesweeper
+      - install -D packages/$FLATPAK_ID.desktop $FLATPAK_DEST/share/applications/$FLATPAK_ID.desktop
+      - install -D packages/$FLATPAK_ID.png /app/share/icons/hicolor/512x512/apps/$FLATPAK_ID.png
+      - install -D packages/$FLATPAK_ID.svg /app/share/icons/hicolor/scalable/apps/$FLATPAK_ID.svg
       - install -D $FLATPAK_ID.metainfo.xml $FLATPAK_DEST/share/metainfo/$FLATPAK_ID.metainfo.xml
