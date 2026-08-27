@@ -6,7 +6,8 @@ sdk-extensions:
   - org.freedesktop.Sdk.Extension.golang
 command: go-minesweeper
 finish-args:
-  - --socket=x11
+  - --socket=wayland
+  - --socket=fallback-x11
   - --share=ipc
   - --device=dri
 modules:
@@ -19,8 +20,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/heathcliff26/go-minesweeper
-        tag: v0.9.13
-        commit: ef651eefd3aebec527af233d86ea6e0244c36b3d
+        tag: v0.10.0
+        commit: 3b57aa4fd77c0a07c563900afe20bbcc67a52679
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
