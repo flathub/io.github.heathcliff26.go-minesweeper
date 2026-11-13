@@ -20,8 +20,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/heathcliff26/go-minesweeper
-        tag: v0.12.1
-        commit: 0cbc03544eb830228769e1ef1d1a7b65c5a278da
+        tag: v0.12.2
+        commit: 168fd9648992cd771a9b2532ed961f365070f2de
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
